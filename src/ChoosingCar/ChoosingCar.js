@@ -7,11 +7,9 @@ export default class ChoosingCar extends Component {
 
   renderCar = (imgNewProduct) => {
     //Create a new state
-    let newState = {
+    this.setState({
       imgProduct: imgNewProduct,
-    };
-
-    this.setState(newState);
+    });
   };
 
   render() {
