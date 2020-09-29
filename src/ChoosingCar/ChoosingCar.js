@@ -1,14 +1,47 @@
 import React, { Component } from "react";
+import "./ChoosingCar.css";
+import dataFeatures from "../data/arrayFeatures.json";
+import dataWheels from "../data/wheels.json";
 
 export default class ChoosingCar extends Component {
-  state = {
-    imgProduct: require("../assets/products/black-car.jpg"),
+  renderIcon = () => {
+    return dataFeatures.map((item, index) => {
+      return (
+        <div className="row mt-1 border border-color-default m-3" key={index}>
+          <div className="col-2">
+            <img
+              className="p-2"
+              src={item.img}
+              alt={index}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="col-10">
+            <h3 className="p-3">{item.title}</h3>
+            <p className="p-3 pt-0 mt-0">{item.type}</p>
+          </div>
+        </div>
+      );
+    });
   };
 
-  renderCar = (imgNewProduct) => {
-    //Create a new state
-    this.setState({
-      imgProduct: imgNewProduct,
+  renderWheels = () => {
+    return dataWheels.map((item, index) => {
+      return (
+        <div className="row mt-1 border border-color-default m-3" key={index}>
+          <div className="col-2">
+            <img
+              className="p-2"
+              src={item.img}
+              alt={index}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="col-10 d-flex flex-colum align-items-center">
+            <span className="p-3">{item.title}</span>
+          </div>
+        </div>
+      );
     });
   };
 
@@ -16,88 +49,43 @@ export default class ChoosingCar extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-7">
-            <img
-              style={{ width: "100%" }}
-              src={this.state.imgProduct}
-              alt="black_car"
-            />
+          <div className="col-6">
+            <div className="model">
+              <img
+                style={{ width: "100%" }}
+                src="./images/images-black/images-black-1/civic-1.jpg"
+              />
+            </div>
+
+            <div className="card mt-2">
+              <h5 className="card-header text-default">Exterior Header</h5>
+              <table className="table border border-color-light" border="1">
+                <tbody>
+                  <tr>
+                    <td> Color </td>
+                    <td> Black </td>
+                  </tr>
+                  <tr>
+                    <td> Price </td>
+                    <td> $ 19.000,00 </td>
+                  </tr>
+                  <tr>
+                    <td> Engine Type </td>
+                    <td> In-line-4-cylinder </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div className="col-5">
-            <div className="card text-dark">
-              <div className="card-header">Exterior Color</div>
-              <div className="card-body">
-                <div
-                  className="row border border-link pt-2 pb-2 mt-2"
-                  onClick={() => {
-                    this.renderCar(require("../assets/products/black-car.jpg"));
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    className="col-2"
-                    src={require("../assets/icons/icon-black.jpg")}
-                    alt="black_icon"
-                  />
-                  <div className="col-10">
-                    <h3>Crystal Black</h3>
-                    <p>Pearl</p>
-                  </div>
-                </div>
-                <div
-                  className="row border border-link pt-2 pb-2 mt-2"
-                  onClick={() => {
-                    this.renderCar(require("../assets/products/steel-car.jpg"));
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    className="col-2"
-                    src={require("../assets/icons/icon-steel.jpg")}
-                    alt="steel_icon"
-                  />
-                  <div className="col-10">
-                    <h3>Modern Steel</h3>
-                    <p>Metalic</p>
-                  </div>
-                </div>
-                <div
-                  className="row border border-link pt-2 pb-2 mt-2"
-                  onClick={() => {
-                    this.renderCar(
-                      require("../assets/products/silver-car.jpg")
-                    );
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    className="col-2"
-                    src={require("../assets/icons/icon-silver.jpg")}
-                    alt="silver_icon"
-                  />
-                  <div className="col-10">
-                    <h3>Crystal Black</h3>
-                    <p>Pearl</p>
-                  </div>
-                </div>
-                <div
-                  className="row border border-link pt-2 pb-2 mt-2"
-                  onClick={() => {
-                    this.renderCar(require("../assets/products/red-car.jpg"));
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    className="col-2"
-                    src={require("../assets/icons/icon-red.jpg")}
-                    alt="red_icon"
-                  />
-                  <div className="col-10">
-                    <h3>Crystal Black</h3>
-                    <p>Pearl</p>
-                  </div>
-                </div>
-              </div>
+          <div className="col-6">
+            <div className="card text-left">
+              <h5 className="card-header text-default">Exterior color</h5>
+              <div className="container-fluid">{this.renderIcon()}</div>
+            </div>
+
+            <div className="card text-left">
+              <h5 className="card-header text-default">Wheels</h5>
+              <div className="container-fluid">{this.renderWheels()}</div>
             </div>
           </div>
         </div>
