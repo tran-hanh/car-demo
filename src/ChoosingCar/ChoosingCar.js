@@ -42,6 +42,19 @@ export default class ChoosingCar extends Component {
     });
   };
 
+  changeWheel = (newWheel) => {
+    //Find in the current state
+    let objectWheel = this.state.carCurrent.wheels.find(
+      (item) => item.idWheel === newWheel.idWheel
+    );
+    if (objectWheel !== -1) {
+      //Take srcImage from state
+      this.setState({
+        carCurrent: { ...this.state.carCurrent, srcImg: objectWheel.srcImg },
+      });
+    }
+  };
+
   renderIcon = () => {
     return dataFeatures.map((item, index) => {
       return (
@@ -73,7 +86,14 @@ export default class ChoosingCar extends Component {
   renderWheels = () => {
     return dataWheels.map((item, index) => {
       return (
-        <div className="row mt-1 border border-color-default m-3" key={index}>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            this.changeWheel(item);
+          }}
+          className="row mt-1 border border-color-default m-3"
+          key={index}
+        >
           <div className="col-2">
             <img
               className="p-2"
